@@ -72,6 +72,7 @@ reportUntypedFunctionDecorator = false
 reportUntypedClassDecorator = false
 reportUntypedBaseClass = false
 reportPrivateUsage = false
+reportPrivateImportUsage = false
 exclude = [
     "**/__pycache__",
     ".venv",
@@ -86,9 +87,6 @@ select = ["E", "F", "I", "UP", "C4", "PERF", "S"]
 ignore = ["PERF203", "S603", "S607"]
 
 [tool.ruff.lint.per-file-ignores]
-# Upstream code pending full rewrite in spec session
-"tts_nodes.py" = ["E501", "E722", "E402", "F401", "PERF401", "S101"]
-"orpheus_audio_effects.py" = ["E501", "F401", "S603", "S607"]
 "hf_auth.py" = ["E501"]
 "__init__.py" = ["E402", "E501", "F401", "S110"]
 "tests/*.py" = ["S101"]

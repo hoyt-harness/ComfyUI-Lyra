@@ -6,6 +6,7 @@ ComfyUI custom nodes use relative imports in __init__.py that fail outside
 a ComfyUI runtime. This conftest adds the repo root to sys.path directly so
 pytest can import core.* and nodes.* as top-level packages.
 """
+
 import sys
 from pathlib import Path
 

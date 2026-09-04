@@ -53,8 +53,7 @@ def load_model(
     """
     if not _RUNTIME_AVAILABLE:
         raise RuntimeError(
-            "Runtime dependencies not installed. "
-            "Install with: uv sync --extra runtime"
+            "Runtime dependencies not installed. Install with: uv sync --extra runtime"
         )
 
     if os.path.sep in orpheus_path and not os.path.isdir(orpheus_path):

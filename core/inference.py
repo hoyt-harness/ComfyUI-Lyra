@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 import numpy as np
 
@@ -11,10 +11,10 @@ if TYPE_CHECKING:
     from core.model import ModelReference
 
 # Orpheus special token IDs
-_SOH = 128259       # start-of-human
-_EOT = 128009       # end-of-text
-_EOH = 128260       # end-of-human
-_EOS = 128258       # stop token for generation
+_SOH = 128259  # start-of-human
+_EOT = 128009  # end-of-text
+_EOH = 128260  # end-of-human
+_EOS = 128258  # stop token for generation
 _AUDIO_START = 128257  # marks start of audio region in output
 
 # SNAC structure: 7 tokens per frame across 3 codebook layers
@@ -63,7 +63,7 @@ def generate_speech_chunk(
     return _decode_snac(codes, model_ref.snac_model, model_ref.device)
 
 
-def _parse_output_tokens(generated_ids: object) -> list[int]:
+def _parse_output_tokens(generated_ids: Any) -> list[int]:
     """Extract raw SNAC code values from model output tensor."""
     # Find last occurrence of _AUDIO_START to locate audio token region
     token_indices = (generated_ids == _AUDIO_START).nonzero(as_tuple=True)  # type: ignore[operator]

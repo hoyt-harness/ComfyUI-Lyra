@@ -6,7 +6,7 @@ Loaded by ComfyUI from custom_nodes/ComfyUI-Lyra/__init__.py.
 
 # Optional Hugging Face authentication — silently skipped if not configured
 try:
-    import hf_auth as _hf_auth  # noqa: F401  # runs setup at import time
+    import hf_auth  # noqa: F401  # pyright: ignore[reportUnusedImport]
 except Exception:
     pass
 
@@ -18,14 +18,18 @@ try:
     from nodes.generate import OrpheusTTSGenerate
     from nodes.loader import OrpheusTTSModelLoader
 
-    NODE_CLASS_MAPPINGS.update({
-        "OrpheusTTSModelLoader": OrpheusTTSModelLoader,
-        "OrpheusTTSGenerate": OrpheusTTSGenerate,
-    })
-    NODE_DISPLAY_NAME_MAPPINGS.update({
-        "OrpheusTTSModelLoader": "Orpheus TTS Model Loader",
-        "OrpheusTTSGenerate": "Orpheus TTS Generate",
-    })
+    NODE_CLASS_MAPPINGS.update(
+        {
+            "OrpheusTTSModelLoader": OrpheusTTSModelLoader,
+            "OrpheusTTSGenerate": OrpheusTTSGenerate,
+        }
+    )
+    NODE_DISPLAY_NAME_MAPPINGS.update(
+        {
+            "OrpheusTTSModelLoader": "Orpheus TTS Model Loader",
+            "OrpheusTTSGenerate": "Orpheus TTS Generate",
+        }
+    )
 except Exception:
     pass
 
