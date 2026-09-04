@@ -1,44 +1,40 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
+"""ComfyUI-Lyra: Orpheus TTS 3B custom node.
 
-# Try to set up Hugging Face authentication if config exists
-try:
-    from . import hf_auth
-except Exception as e:
-    print(
-        f"Note: Hugging Face authentication not set up. This is optional for public models: {e}"
-    )
-
-"""
-Orpheus TTS for ComfyUI - A Text-to-Speech node using the Orpheus system
+Loaded by ComfyUI from custom_nodes/ComfyUI-Lyra/__init__.py.
 """
 
-# Import nodes from TTS module
-from .tts_nodes import NODE_CLASS_MAPPINGS as TTS_NODE_CLASS_MAPPINGS
-from .tts_nodes import NODE_DISPLAY_NAME_MAPPINGS as TTS_NODE_DISPLAY_NAME_MAPPINGS
-
-# Import nodes from audio effects module
+# Optional Hugging Face authentication — silently skipped if not configured
 try:
-    from .orpheus_audio_effects import (
-        NODE_CLASS_MAPPINGS as EFFECTS_NODE_CLASS_MAPPINGS,
-    )
-    from .orpheus_audio_effects import (
-        NODE_DISPLAY_NAME_MAPPINGS as EFFECTS_NODE_DISPLAY_NAME_MAPPINGS,
-    )
+    import hf_auth as _hf_auth  # noqa: F401  # runs setup at import time
+except Exception:
+    pass
 
-    # Combine node mappings
-    NODE_CLASS_MAPPINGS = {**TTS_NODE_CLASS_MAPPINGS, **EFFECTS_NODE_CLASS_MAPPINGS}
+# Node registration — fails gracefully when runtime deps are absent
+NODE_CLASS_MAPPINGS: dict = {}
+NODE_DISPLAY_NAME_MAPPINGS: dict = {}
 
-    NODE_DISPLAY_NAME_MAPPINGS = {
-        **TTS_NODE_DISPLAY_NAME_MAPPINGS,
-        **EFFECTS_NODE_DISPLAY_NAME_MAPPINGS,
-    }
+try:
+    from nodes.generate import OrpheusTTSGenerate
+    from nodes.loader import OrpheusTTSModelLoader
 
-    print("Orpheus TTS and Audio Effects nodes loaded successfully")
-except Exception as e:
-    print(
-        f"Warning: Audio Effects module could not be loaded, only TTS nodes will be available: {e}"
-    )
-    NODE_CLASS_MAPPINGS = TTS_NODE_CLASS_MAPPINGS
-    NODE_DISPLAY_NAME_MAPPINGS = TTS_NODE_DISPLAY_NAME_MAPPINGS
+    NODE_CLASS_MAPPINGS.update({
+        "OrpheusTTSModelLoader": OrpheusTTSModelLoader,
+        "OrpheusTTSGenerate": OrpheusTTSGenerate,
+    })
+    NODE_DISPLAY_NAME_MAPPINGS.update({
+        "OrpheusTTSModelLoader": "Orpheus TTS Model Loader",
+        "OrpheusTTSGenerate": "Orpheus TTS Generate",
+    })
+except Exception:
+    pass
+
+try:
+    from nodes.effects import LyraAudioEffects
+
+    NODE_CLASS_MAPPINGS["LyraAudioEffects"] = LyraAudioEffects
+    NODE_DISPLAY_NAME_MAPPINGS["LyraAudioEffects"] = "Lyra Audio Effects"
+except Exception:
+    pass
 
 __all__ = ["NODE_CLASS_MAPPINGS", "NODE_DISPLAY_NAME_MAPPINGS"]

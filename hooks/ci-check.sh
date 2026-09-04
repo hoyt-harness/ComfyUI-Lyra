@@ -4,11 +4,11 @@
 # Invoked locally by hooks/pre-push (blocking) and by .github/workflows/ci.yml
 # (confirmation only) — local and CI run this exact script to prevent drift.
 #
-# Note: uv sync pulls heavy runtime deps (torch, transformers, etc.).
-# Dependency group / optional-extras split is tracked in the spec.
+# Dev deps only (no torch/transformers/snac) — lint and tests run without GPU.
+# Full runtime install: uv sync --extra runtime
 set -e
 
-uv sync
+uv sync --group dev
 
 echo "Linting with Ruff..."
 ruff check .
@@ -17,12 +17,15 @@ ruff format . --check
 echo "Running pyright..."
 uv run pyright .
 
+echo "Running tests..."
+uv run pytest tests/
+
 echo "Security vulnerability scan (safety)..."
 uv run safety check --json || echo "Safety check completed with warnings"
 
 echo "SAST with Bandit..."
 uv run python -m bandit -r . \
-    --exclude .venv,hooks \
+    --exclude .venv,hooks,.specify \
     -f json -o bandit-report.json \
     || echo "Bandit scan completed"
 

@@ -18,8 +18,13 @@ classifiers = [
 ]
 requires-python = ">=3.10"
 dependencies = [
-    "torch",
     "numpy",
+    "pedalboard",
+]
+
+[project.optional-dependencies]
+runtime = [
+    "torch",
     "soundfile",
     "transformers",
     "huggingface_hub",
@@ -52,12 +57,13 @@ dev = [
     "safety>=3.0.0",
     "bandit>=1.7.8",
     "pip-licenses>=4.4.0",
+    "pytest>=8.0.0",
 ]
 
 [tool.pyright]
 pythonVersion = "3.10"
 typeCheckingMode = "basic"
-reportMissingImports = true
+reportMissingImports = "warning"
 reportMissingTypeStubs = false
 reportUnusedImport = true
 reportUnusedVariable = true
@@ -84,4 +90,10 @@ ignore = ["PERF203", "S603", "S607"]
 "tts_nodes.py" = ["E501", "E722", "E402", "F401", "PERF401", "S101"]
 "orpheus_audio_effects.py" = ["E501", "F401", "S603", "S607"]
 "hf_auth.py" = ["E501"]
-"__init__.py" = ["E402", "E501", "F401"]
+"__init__.py" = ["E402", "E501", "F401", "S110"]
+"tests/*.py" = ["S101"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = ["--import-mode=importlib"]
