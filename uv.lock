@@ -498,7 +498,7 @@ dev = [
 requires-dist = [
     { name = "huggingface-hub", marker = "extra == 'runtime'" },
     { name = "librosa", marker = "extra == 'runtime'", specifier = ">=0.10.2" },
-    { name = "nltk", marker = "extra == 'runtime'", specifier = ">=3.8.0" },
+    { name = "nltk", marker = "extra == 'runtime'", specifier = ">=3.10.3" },
     { name = "numpy" },
     { name = "pedalboard" },
     { name = "snac", marker = "extra == 'runtime'" },
