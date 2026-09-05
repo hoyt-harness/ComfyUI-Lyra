@@ -58,6 +58,7 @@ dev = [
     "bandit>=1.7.8",
     "pip-licenses>=4.4.0",
     "pytest>=8.0.0",
+    "cyclonedx-bom>=4.0.0",
 ]
 
 [tool.pyright]

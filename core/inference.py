@@ -66,7 +66,9 @@ def generate_speech_chunk(
 def _parse_output_tokens(generated_ids: Any) -> list[int]:
     """Extract raw SNAC code values from model output tensor."""
     # Find last occurrence of _AUDIO_START to locate audio token region
-    token_indices = (generated_ids == _AUDIO_START).nonzero(as_tuple=True)  # type: ignore[operator]
+    token_indices = (  # type: ignore[operator]
+        generated_ids == _AUDIO_START
+    ).nonzero(as_tuple=True)
     if len(token_indices[1]) > 0:
         start_idx = token_indices[1][-1].item() + 1
         cropped = generated_ids[:, start_idx:]  # type: ignore[index]
