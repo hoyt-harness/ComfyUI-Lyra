@@ -15,8 +15,8 @@ NODE_CLASS_MAPPINGS: dict = {}
 NODE_DISPLAY_NAME_MAPPINGS: dict = {}
 
 try:
-    from nodes.generate import OrpheusTTSGenerate
-    from nodes.loader import OrpheusTTSModelLoader
+    from lyra_nodes.generate import OrpheusTTSGenerate
+    from lyra_nodes.loader import OrpheusTTSModelLoader
 
     NODE_CLASS_MAPPINGS.update(
         {
@@ -34,7 +34,7 @@ except Exception:
     pass
 
 try:
-    from nodes.effects import LyraAudioEffects
+    from lyra_nodes.effects import LyraAudioEffects
 
     NODE_CLASS_MAPPINGS["LyraAudioEffects"] = LyraAudioEffects
     NODE_DISPLAY_NAME_MAPPINGS["LyraAudioEffects"] = "Lyra Audio Effects"
