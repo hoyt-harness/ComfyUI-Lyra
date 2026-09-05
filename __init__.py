@@ -4,6 +4,15 @@
 Loaded by ComfyUI from custom_nodes/ComfyUI-Lyra/__init__.py.
 """
 
+import os
+import sys
+
+# ComfyUI loads __init__.py directly via importlib without adding the node's
+# directory to sys.path. Add it manually so lyra_nodes/ and core/ are importable.
+_node_dir = os.path.dirname(os.path.abspath(__file__))
+if _node_dir not in sys.path:
+    sys.path.insert(0, _node_dir)
+
 # Optional Hugging Face authentication — silently skipped if not configured
 try:
     import hf_auth  # noqa: F401  # pyright: ignore[reportUnusedImport]
