@@ -9,6 +9,10 @@ on:
 permissions:
   contents: read
 
+env:
+  # Disable AVX512 to avoid SIGILL on CI runners that lack the instruction set
+  NUMPY_DISABLE_CPU_FEATURES: "avx512f avx512cd avx512_skx"
+
 jobs:
   build:
     runs-on: ubuntu-latest
