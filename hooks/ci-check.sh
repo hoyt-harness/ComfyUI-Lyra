@@ -11,8 +11,8 @@ set -e
 uv sync --group dev
 
 echo "Linting with Ruff..."
-ruff check .
-ruff format . --check
+uv run ruff check .
+uv run ruff format . --check
 
 echo "Running pyright..."
 uv run pyright .
