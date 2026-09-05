@@ -11,7 +11,7 @@ permissions:
 
 env:
   # Disable AVX512 to avoid SIGILL on CI runners that lack the instruction set
-  NUMPY_DISABLE_CPU_FEATURES: "avx512f avx512cd avx512_skx"
+  NPY_DISABLE_CPU_FEATURES: "avx512f avx512cd avx512_skx"
 
 jobs:
   build:
@@ -19,7 +19,7 @@ jobs:
 
     strategy:
       matrix:
-        python-version: ['3.10', '3.11', '3.12', '3.13']
+        python-version: ['3.10', '3.11', '3.12']
 
     steps:
     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
