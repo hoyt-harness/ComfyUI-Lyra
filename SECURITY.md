@@ -1,6 +1,11 @@
 # Security Policy
 
+## Supported Versions
+
+The latest stable release (see [Releases](https://github.com/hoyt-harness/ComfyUI-Lyra/releases) or `git tag`) receives security patches. Earlier releases do not.
+
 ## Reporting a Vulnerability
+
 We take security vulnerabilities seriously. If you discover a security issue, please report it to us by following these steps:
 
 1. On GitHub, navigate to the main page of the repository.
@@ -9,6 +14,9 @@ We take security vulnerabilities seriously. If you discover a security issue, pl
 4. Fill in the form with as much detail as possible.
 
 We will do our best to respond to your report within 48 hours.
+
+**Email:** admin@positronikal.tech — use this if you prefer not to use GitHub
+or if the vulnerability affects multiple Positronikal projects.
 
 ## Security Standards
 This project adheres to the [Positronikal Repository Security Rules](https://github.com/Positronikal/PositronikalCodingStandards/blob/main/standards/Repository%20Security%20Rules.md). Please refer to these rules for more information on our security practices.
