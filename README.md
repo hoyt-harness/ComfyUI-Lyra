@@ -1,8 +1,6 @@
 # ComfyUI-Lyra
 Orpheus TTS 3B text-to-speech for ComfyUI. Hard fork of ComfyUI-Orpheus-TTS — GPLv3, pure Python audio stack (no SoX), uv dev environment.
 
-> **Work in progress.** Pre-release. Not yet suitable for general use.
-
 
 ![image](https://github.com/user-attachments/assets/3e167915-2ac3-4dbe-8b34-e65e6df2a94c)
 
