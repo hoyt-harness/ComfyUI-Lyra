@@ -14,6 +14,9 @@ updates:
       include: "scope"
     allow:
       - dependency-type: "security"
+    ignore:
+      - dependency-name: "filelock"
+        versions: [">=4.0"]
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
