@@ -174,3 +174,6 @@ cython_debug/
 .pypirc
 bandit-report.json
 licenses.json
+
+# Claude Code local permissions (may contain secrets)
+.claude/settings.local.json
